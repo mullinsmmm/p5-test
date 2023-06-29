@@ -7,19 +7,21 @@ class App extends React.Component {
 	direction = '^';
 
 	setup = (p5, parentRef) => {
-		p5.createCanvas(600, 600).parent(parentRef);
+		p5.createCanvas(1400, 1400).parent(parentRef);
+    p5.background(200);
+    p5.frameRate(24);
 	};
 
 	draw = (p5) => {
-		p5.background(0);
-		p5.fill(255, this.y * 1.3, 0);
-		p5.ellipse(p5.width / 2, this.y, 50);
+		// p5.background(200);
+		p5.fill(255, this.y / 4, 0);
+		p5.ellipse(p5.width / p5.random(0,6), this.y, p5.random(50, 550));
 		if (this.y > p5.height) this.direction = '';
 		if (this.y < 0) {
 			this.direction = '^';
 		}
 		if (this.direction === '^') this.y += 8;
-		else this.y -= 4;
+		else this.y -= p5.random(4, 16);
 	};
 
 	render() {
